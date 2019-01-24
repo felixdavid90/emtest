@@ -8,6 +8,8 @@ import {
     DELETE,
     fetchUtils,
 } from 'react-admin';
+import DataProvider from './lib/DataProvider';
+
 import { stringify } from 'query-string';
 
 const API_URL = 'my.api.url';
@@ -96,6 +98,9 @@ const convertHTTPResponseToDataProvider = (response, type, resource, params) => 
  * @param {Object} payload Request parameters. Depends on the request type
  * @returns {Promise} the Promise for response
  */
+
+ const DataProvider = (type, resource, params) => new Promise();
+
 export default (type, resource, params) => {
     const { fetchJson } = fetchUtils;
     const { url, options } = convertDataProviderRequestToHTTP(type, resource, params);

@@ -1,12 +1,15 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import { Admin, Resource } from 'react-admin';
 import { RestProvider, AuthProvider, Base64Uploader } from '../lib';
 
-
+import AboutUs from './AboutUs';
 import { PostList, PostEdit, PostCreate } from './posts';
 import { UserList, UserEdit, UserCreate } from './users';
 import Dashboard from './Dashboard';
+
 import NotFound from './NotFound';
+import ApproveButton from '../comments/ApproveButton';
+// import AuthProvider from './AuthProvider';
 
 
 import PostIcon from '@material-ui/icons/Book';
@@ -30,16 +33,23 @@ const authConfig = {
 
 const dataProvider = Base64Uploader(RestProvider(firebaseConfig, { trackedResources }));
 const App = () => (
+
   <Admin
-
-
+  approveButton={ApproveButton}
+  authProvider={AuthProvider}
   catchAll={NotFound}
   dashboard={Dashboard}
+  aboutUs={AboutUs}
   title="EMTest"
   dataProvider={dataProvider} >
 
-    <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} />
-    <Resource name="users" list={UserList} edit={UserEdit} create={UserCreate} />
+    <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon}/>
+
+    <Resource name="users" list={UserList} edit={UserEdit} create={UserCreate} icon={UserIcon}/>
+
+    {
+
+    }
   </Admin>
 );
 export default App;

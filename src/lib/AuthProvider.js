@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK } from 'react-admin';
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK, AUTH_GET_PERMISSIONS} from 'react-admin';
 import firebase from 'firebase';
 
 const baseConfig = {
@@ -69,6 +69,11 @@ export default (config = {}) => {
       return config.handleAuthStateChange(auth, config);
     }
 
-    return false;
+    if (type === AUTH_GET_PERMISSIONS) {
+       const role = localStorage.getItem('role');
+       return role ? Promise.resolve(role) : Promise.reject();
+   }
+
+    return Promise.reject('Unknown method');
   };
 };

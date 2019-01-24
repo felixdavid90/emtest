@@ -2,8 +2,10 @@ import React from 'react';
 import {
   List,
   Edit,
+  Show,
   Create,
   Datagrid,
+  RichTextField,
   ReferenceField,
   TextField,
   EditButton,
@@ -29,6 +31,16 @@ export const PostList = props => (
       <EditButton />
     </Datagrid>
   </List>
+);
+
+export const PostShow = (props) => (
+  <Show {...props}>
+    <SimpleForm>
+      <TextField source="id" />
+      <TextField source="title" />
+      <RichTextField source="body" />
+    </SimpleForm>
+  </Show>
 );
 
 export const PostEdit = props => (
